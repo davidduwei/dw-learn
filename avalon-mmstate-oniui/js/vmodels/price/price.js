@@ -48,15 +48,13 @@ define(["smartgrid/avalon.smartgrid","dialog/avalon.dialog"], function() {
 				});
 				avalon.scan();
 				setTimeout(function(){
-
-
-				avalon.vmodels.grid.render([{
-					id: 1,
-					readableId: 'price001',
-					displayName: '促销价',
-					useExp: 1
-				}])
-			},0)
+					avalon.vmodels.grid.render([{
+						id: 1,
+						readableId: 'price001',
+						displayName: '促销价',
+						useExp: 1
+					}]);
+				},5);
 			}
 			// 对应的视图销毁前
 		$ctrl.$onBeforeUnload = function() {

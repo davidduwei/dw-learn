@@ -1936,6 +1936,7 @@ function rejectDisposeQueue(data) {
     }
     console.log(newInfo);
     console.log(oldInfo);
+    console.log('GC回收新组件个数'+newInfo.widget + '旧组件个数'+oldInfo.widget)
     var diff = false
     allTypes.forEach(function (type) {
         if (oldInfo[type] !== newInfo[type]) {
