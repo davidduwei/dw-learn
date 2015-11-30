@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mmstate</title>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/require.js"></script>
+</head>
+<body ms-controller="root">
+	<menu>
+		<ul>
+			<li>
+				<a href="#!/price">价格列表</a>
+			</li>
+		</ul>
+	</menu>
+	<div ms-view></div>
+	<script>
+	requirejs.config({
+		baseUrl:'js/'
+	})
+		require(['avalon','domReady!','mmState'], function() {
+			avalon.require = require;
+			avalon.define({
+				$id: 'root'
+			});
+			avalon.state('price', {
+				controller: 'root',
+				url: '/price',
+				views: {
+					"": {
+						templateUrl: 'vmodels/price/price.html',
+						controllerUrl: ['vmodels/price/price'],
+						ignoreChange: function(type) {
+							return !!type;
+						}
+					}
+				}
+			});
+			avalon.state('priceson', {
+				controller: 'root',
+				url: '/price:{id}',
+				views: {
+					"": {
+						templateUrl: 'vmodels/price/price.creat.html',
+						controllerUrl: ['vmodels/price/price.creat'],
+						ignoreChange: function(type) {
+							return !!type;
+						}
+					}
+				}
+			});
+			avalon.state.config({
+				onError: function() {
+					avalon.log(arguments);
+				},
+				onBeforeUnload: function() {
+
+				},
+				onLoad: function() {}
+			});
+			//启动路由
+			avalon.history.start({});
+			avalon.scan();
+		})
+	</script>
+</body>
+</html>
